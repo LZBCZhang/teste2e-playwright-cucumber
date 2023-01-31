@@ -1,0 +1,50 @@
+{
+  "name": "poc-test-e2e",
+  "version": "1.1.0",
+  "scripts": {
+    "build": "rimraf build && npm run format && npm run lint && npm run cucumber-check",
+    "cucumber-check": "cucumber-js features/**/*.feature --dry-run --require env/set-environment-variables.ts --require config/custom-world.ts --require step-definitions/**/*.ts --require-module ts-node/register --format summary --format progress --format progress-bar  --publish-quiet",
+    "eslint-fix": "eslint ./ --ext .js,.ts,.tsx --fix",
+    "eslint-init": "eslint --init",
+    "format": "prettier --write \"**/*.{ts,tsx,css,html}\" ",
+    "lint": "eslint ./ --ext .js,.ts,.tsx --format visualstudio --no-color --max-warnings 10 --report-unused-disable-directives",
+    "debug": "PWDEBUG=1 DEBUG=pw:api cucumber-js",
+    "video": "PWVIDEO=1 cucumber-js",
+    "report": "open reports/report.html",
+    "snippets": "cucumber-js features/**/*/feature --dry-run",
+    "steps-usage": "node ./node_modules/@cucumber/cucumber/bin/cucumber-js features/**/*.feature --dry-run --require env/set-environment-variables.ts --require world/custom-world.ts --require step-definitions/**/*.ts --require hooks/**/*.ts  --require-module ts-node/register --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format usage  --publish-quiet",
+    "test": "cucumber-js",
+    "generate": "node index.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^8.10.0",
+    "@cucumber/html-formatter": "^20.2.1",
+    "@cucumber/pretty-formatter": "^1.0.0",
+    "cucumber-console-formatter": "1.0.0",
+    "cucumber-html-formatter": "3.1.0",
+    "expect": "^29.4.1",
+    "fs-extra": "^11.1.0",
+    "is-ci": "^3.0.1",
+    "playwright": "1.30.0",
+    "rimraf": "^4.1.2",
+    "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.30.0",
+    "@types/expect": "^1.20.4",
+    "@types/fs-extra": "^11.0.1",
+    "@types/lodash": "4.14.167",
+    "@types/node": "14.14.20",
+    "@typescript-eslint/eslint-plugin": "4.12.0",
+    "@typescript-eslint/parser": "4.12.0",
+    "eslint": "7.17.0",
+    "eslint-config-prettier": "7.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "prettier": "2.2.1",
+    "ts-node": "10.9.1"
+  }
+}
